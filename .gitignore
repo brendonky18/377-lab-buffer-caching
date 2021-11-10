@@ -14,3 +14,5 @@ kernel
 kernelmemfs
 mkfs
 .gdbinit
+git.ssh
+git.ssh.pub
