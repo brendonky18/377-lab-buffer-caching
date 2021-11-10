@@ -95,3 +95,9 @@ sys_hitrate(void)
 {
   return bhitrate();
 }
+
+int 
+sys_resethitrate(void)
+{
+  return bresethitrate();
+}

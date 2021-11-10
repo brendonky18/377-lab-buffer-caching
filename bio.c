@@ -199,7 +199,23 @@ void brelse(struct buf *b)
  */
 float bhitrate(void) 
 {
-    return (float) hitcount / (hitcount + misscount);
+    uint count = hitcount + misscount;
+    if(count == 0) {
+        return 1.0; // return 1 to avoid divide by 0 error
+    } else {
+        return (float) hitcount / count;
+    }
+}
+
+/**
+ * @brief Resets the hit rate, sets both counters to 0
+ * 
+ * @return int 0
+ */
+int bresethitrate(void) {
+    hitcount = 0;
+    misscount = 0;
+    return 0;
 }
 //PAGEBREAK!
 // Blank page.
