@@ -89,3 +89,9 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+float
+sys_hitrate(void)
+{
+  return bhitrate();
+}

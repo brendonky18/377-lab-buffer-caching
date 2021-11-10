@@ -1,3 +1,7 @@
+/**
+ * @brief Defines the format of the `buf` struct
+ * 
+ */
 struct buf {
   int flags;
   uint dev;

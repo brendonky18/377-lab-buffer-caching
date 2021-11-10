@@ -23,6 +23,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+float hitrate(void);
 
 // ulib.c
 int stat(const char*, struct stat*);
