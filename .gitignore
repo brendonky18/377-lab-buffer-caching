@@ -14,5 +14,9 @@ kernel
 kernelmemfs
 mkfs
 .gdbinit
-/qemu-6.1.0/
+/qemu-*
 .gitignore
+
+qemu-*.tar.xz
+
+/.vscode
