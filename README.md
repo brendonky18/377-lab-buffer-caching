@@ -48,9 +48,9 @@ This will work although I encourage you to try other approaches, or to modify th
 
 At the end, you will also need to print the hit rate of the program. Two system calls have been added to assist you in this: `hitrate()` and `resethitrate()`, which return a float representing the system's hit rate, and resets the system's hit rate respectively.
 
-The template file has already been created [here](xv6/benchmark.c), and some boilerplate code has been provided. The `Makefile` has also been updated appropriately. 
+A template file has already been created [here](xv6/benchmark.c), and some boilerplate code has been provided. The `Makefile` has also been updated appropriately, so you will not need to make any changes in order to compile the program. 
 
-In order to complete this part  of the assignment, all you need to do is implement the code where commented `TODO`, and then compile and run the code to confirm that it works.
+In order to complete this part of the assignment, all you need to do is implement the code where commented `TODO`, and then compile and run the code inside xv6 to confirm that it works.
 
 ### Part 2: Modifying the Eviction Policy (10 Points)
 
