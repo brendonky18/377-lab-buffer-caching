@@ -67,25 +67,25 @@ int main(int argc, char const *argv[]) {
     // check if file was created
     if(in_fd == -1) {
         printf(1, "No file specified, or file was not created. Usage: ./benchmark <in file path>");
-        exit(-1);
+        exit();
     }
     
     // get the size of the file
     struct stat buf;
     if(fstat(in_fd, &buf) < 0) {
         printf(1, "could not stat file");
-        exit(-2);
+        exit();
     }
 
     // the file being read must be less than RAND_MAX
     if(file_len > RAND_MAX) {
         printf(1, "file is too large, must me smaller than RAND_MAX");
-        exit(-3);
+        exit();
     }
 
     close(in_fd);
     
-    exit(0);
+    exit();
 }
 
 /**
