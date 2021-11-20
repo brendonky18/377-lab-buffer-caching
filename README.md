@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This lab is designed to explore page tables, and how they are used in Xv6. Please make sure that all of your answers to questions in these labs come from work done on the Edlab environment – otherwise, they may be inconsistent results and will not receive points.
+This lab is designed to explore caching and eviction, and how they are used in xv6. Please make sure that all of your answers to questions in these labs come from work done on the Edlab environment – otherwise, there may be inconsistent results and you may lose points.
 
 Please submit your answers to this lab on Gradescope. All answers are due by the time specified on Gradescope. The TA present in your lab will do a brief explanation of the various parts of this lab, but you are expected to answer all questions by yourself. Please raise your hand if you have any questions during the lab section – TAs will be notified you are asking a question. Questions and Parts have a number of points marked next to them to signify their weight in this lab’s final grade. Labs are weighted equally, regardless of their total points.
 
@@ -31,7 +31,7 @@ The three test cases will be sequential access, random access, and weighted rand
 
 This means that when runing the benchmarks, your test file must be larger than 15.6kB. 
 
-In order to benchmark an average case and worst case scenario, you will read and print the contents of a file in random order, and in sequential order, byte-by-byte. 
+In order to benchmark an average case and worst case scenario, you will read and print the contents of a file byte-by-byte, in random order and in sequential order. 
 
 #### Sequential Access
 In the sequential read, you will have to read the entirety of your file twice, once to ensure we are not using a cold cache and a second time to perform the benchmark.  
@@ -50,7 +50,7 @@ In order to complete this part of the assignment, all you need to do is implemen
 
 ### Part 2: Modifying the Eviction Policy (10 Points)
 
-In order to modify the eviction policy you will be workin in `bio.c`. In the file, comments have been made indicating what changes need to be made and where to make them. The changes themselves should be fairly minor, and you should only be adding or removing about 20 lines of code in total in `bio.c`. 
+In order to modify the eviction policy you will be working in `bio.c`. In the file, comments have been made indicating what changes need to be made and where to make them. The changes themselves should only be adding or removing about 20 lines of code in total in `bio.c`. 
 
 ## Part 3: Measuring Performance (5 Points)
 Before modifying changing the eviction policy, run your test program to determine the efficiency of the default LRU policy.
@@ -60,4 +60,6 @@ For each of the test cases, make sure to run them several times (at least 3) in 
 Make sure to take a screen shot of the results after each test, you will submit these on Gradescope. 
 
 This repo includes a Makefile that allows you to locally compile and run all the sample code listed in this tutorial. You can compile them by running `make`. Feel free to modify the source files yourself, after making changes you can run `make` again to build new binaries from your modified files. You can also use `make clean` to remove all the built files, this command is usually used when something went wrong during the compilation so that you can start fresh. 
+
+To execute the benchmarks, launch xv6 by running `make qemu-nox`, then once it has finished compiling and the emulator is up run the command `./benchmark`, you can optionally specify a file as an argumnet `./benchmark <file>`. If no file is specified, it will default to running the benchmarks on the file `read_file`.
 
