@@ -37,19 +37,17 @@ uint rand(void) {
  * @param n the exponent
  * @return x raised to the power of n, as a long 
  */
-long pow(long x, unsigned n)
-{
+long pow(long x, unsigned n) {
     long p = x;
     long r = 1;
 
-    while (n > 0)
-    {
-        if (n % 2 == 1)
+    while (n > 0) {
+        if (n % 2 == 1) {
             r *= p;
+        }
         p *= p;
         n /= 2;
     }
-
     return(r);
 }
 
