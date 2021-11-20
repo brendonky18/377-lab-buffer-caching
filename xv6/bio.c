@@ -38,7 +38,6 @@ struct
 
 uint hitcount;
 uint misscount;
-struct spinlock * hitratelock;
 
 /**
  * inits the buffer cache linked list
@@ -65,7 +64,6 @@ void binit(void)
     // tracks the hit rate of the eviction policy
     hitcount = 0;
     misscount = 0;
-    initlock(hitratelock, "hit rate lock");
 }
 
 /**
@@ -84,7 +82,6 @@ bget(uint dev, uint blockno)
     struct buf *b;
 
     acquire(&bcache.lock);
-    acquire(hitratelock);
 
     // Is the block already cached?
     for (b = bcache.head.next; b != &bcache.head; b = b->next)
@@ -101,7 +98,6 @@ bget(uint dev, uint blockno)
     }
 
     misscount++;
-    release(hitratelock);
     /**
      * TODO:
      * Modify the eviction policy:
