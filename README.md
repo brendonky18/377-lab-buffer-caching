@@ -27,28 +27,24 @@ In this lab, you will be working with the file system in xv6. Specifically, you 
 
 Different eviction policies are more well-suited to different scenarios, and you will have to design a program in order to benchmark these policies under different kinds of loads. 
 
-The three test cases will be sequential access, random access, and weighted random access of memory. The buffer cache stores 30 buffers, each 512B in size. The worst case scenario for FIFO and LRU is known as a *degenerate pattern*, where a sequential order of accesses results in a buffer being evicted right before it will be read again. For this to happen, the reads must span more data than the buffer cache can store, >15.6kB in total. 
+The three test cases will be sequential access, random access, and weighted random access of memory. The buffer cache stores 30 buffers, each 512B in size. The worst case scenario for FIFO and LRU is known as a *degenerate pattern*, where a sequential order of accesses results in a buffer being evicted right before it will be read again. For this to happen, the data being read must larger than what the buffer cache can store, >15.6kB in total. 
 
-In order to benchmark an average case and worst case scenario, you will read and print the contents of a file in random order, and in sequential order, byte-by-byte (or character-by-character). 
+This means that when runing the benchmarks, your test file must be larger than 15.6kB. 
+
+In order to benchmark an average case and worst case scenario, you will read and print the contents of a file in random order, and in sequential order, byte-by-byte. 
 
 #### Sequential Access
-In the sequential read, you will have to read the entirety of your file twice, sequentially by byte from the start. 
+In the sequential read, you will have to read the entirety of your file twice, once to ensure we are not using a cold cache and a second time to perform the benchmark.  
 
 #### Random Access
 In the random read, you will have to perform the same total number of read operations (the exact number will vary depending on your file size).
 
 #### Weighted-Random Access
-In the weighted random distribution, you will do the same as before, however you will be weighting certain elements more. This is meant to simulate locality of reference, which tends to be quite high for an "average" use case. A simple way to calculate this weighted random is to do the following:
+In the weighted random distribution, you will do the same as before, however you will be weighting certain elements more. This is meant to simulate locality of reference, which tends to be quite high for an "average" use case. A function which calculates the weighted random indecies has already been provided. 
 
- - For some random index i:
-    - If some random number r > 2^-i, read at that address
-    - Else try another random access
+At the end of each benchmark, you will also need to print the hit rate. Two system calls have been added to assist you in this: `hitrate()` and `resethitrate()`, which return a float representing the system's hit rate, and resets the system's hit rate respectively.
 
-This will work although I encourage you to try other approaches, or to modify the constant 2 and seeing how that impacts the hit rate. 
-
-At the end, you will also need to print the hit rate of the program. Two system calls have been added to assist you in this: `hitrate()` and `resethitrate()`, which return a float representing the system's hit rate, and resets the system's hit rate respectively.
-
-A template file has already been created [here](xv6/benchmark.c), and some boilerplate code has been provided. The `Makefile` has also been updated appropriately, so you will not need to make any changes in order to compile the program. 
+A template file has already been created [here](xv6/benchmark.c), and some boilerplate code has been provided. The `Makefile` has also been updated appropriately, so you will not need to make any changes in order to compile the program. Additionally, for the file being read, you can paste your text [here](xv6/read_file), or otherwise make sure that it is named `read_file` so that it will be included and imported when compiling. 
 
 In order to complete this part of the assignment, all you need to do is implement the code where commented `TODO`, and then compile and run the code inside xv6 to confirm that it works.
 
