@@ -1,8 +1,3 @@
-// #include <stdlib.h>
-// #include <stdio.h>
-// #include <string.h>
-// #include <math.h>
-
 #include "types.h"
 #include "stat.h"
 #include "user.h"
@@ -60,9 +55,16 @@ long pow(long x, unsigned n)
 
 int main(int argc, char const *argv[]) {
     long file_len;
-    
+    int in_fd;
+
     // open the file with the file path specified from the command line
-    int in_fd = open(argv[1], O_RDONLY);
+    if(argc > 1){
+        in_fd = open(argv[1], O_RDONLY); 
+    } else {
+    // open read_file if no file is specified
+        in_fd = open("read_file", O_RDONLY); 
+    }
+    
     
     // check if file was created
     if(in_fd == -1) {
@@ -83,8 +85,12 @@ int main(int argc, char const *argv[]) {
         exit();
     }
 
+    printf(1, "The hitrate so far is %d\n", hitrate());
+    // TODO:
+    // Implement the benchmark functions here. 
+    // You should not have to modify any other code outside of this file
+
     close(in_fd);
-    
     exit();
 }
 
