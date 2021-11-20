@@ -191,15 +191,15 @@ void brelse(struct buf *b)
 
 /**
  * @brief Calculates the hitrate of the buffer cache
- * @return float: The hit rate
+ * @return the hit rate as a percent out of 100, as an int
  */
-float bhitrate(void) 
+int bhitrate(void) 
 {
     uint count = hitcount + misscount;
     if(count == 0) {
-        return 1.0; // return 1 to avoid divide by 0 error
+        return 100; // return 1 to avoid divide by 0 error
     } else {
-        return (float) hitcount / count;
+        return  hitcount * 100 / count;
     }
 }
 

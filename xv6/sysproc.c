@@ -90,7 +90,7 @@ sys_uptime(void)
   return xticks;
 }
 
-float
+int
 sys_hitrate(void)
 {
   return bhitrate();

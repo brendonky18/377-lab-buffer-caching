@@ -15,7 +15,7 @@ void            binit(void);
 struct buf*     bread(uint, uint);
 void            brelse(struct buf*);
 void            bwrite(struct buf*);
-float           bhitrate(void);
+int             bhitrate(void);
 int             bresethitrate(void);
 
 // console.c
